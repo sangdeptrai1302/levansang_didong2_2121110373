@@ -1,29 +1,30 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, FlatList, Image, Text } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 
-export default function Products() {
+const Laptop = () => {
   const [games, setGames] = useState([]);
-  const [numColumns, setNumColumns] = useState(2); // Thêm state cho số cột
+  const [numColumns, setNumColumns] = useState(2);
+  const navigation = useNavigation();
 
   const getAPI = () => {
-    const apiUrl = 'http://192.168.137.122:8080/api/products';
+    const apiUrl = 'http://10.17.8.251:8080/api/products';
 
     return fetch(apiUrl)
       .then(response => response.json())
-      .then((data) => setGames(data))
+      .then((data) => {
+        // Lọc và chỉ lấy các sản phẩm có category.id === 3
+        const filteredGames = data.filter(item => item.category.id === 6);
+        setGames(filteredGames);
+      })
       .catch(error => console.log(error));
   }
 
-  const navigation = useNavigation();
-
-  // More details btn
   const handleMoreButton = (id) => {
     navigation.navigate('productDetails', { _id: id });
     console.log(id);
   };
 
-  // Add to cart
   const handleAddToCart = () => {
     alert('Added to cart');
   };
@@ -33,12 +34,15 @@ export default function Products() {
   }, []);
 
   const renderProduct = ({ item }) => (
-    
     <View style={styles.productContainer}>
       <Image source={{ uri: item.photo }} style={styles.productImage} />
       <Text style={styles.productTitle}>{item.title}</Text>
       <Text style={styles.productDescription}>{item.description}</Text>
       <Text style={styles.productPrice}>{`Giá: ${item.price}`}</Text>
+      <View style={styles.categoryContainer}>
+        <Image source={{ uri: item.category.photo }} style={styles.categoryImage} />
+        <Text style={styles.productCategory}>{`Category: ${item.category.name}`}</Text>
+      </View>
     </View>
   );
 
@@ -48,7 +52,7 @@ export default function Products() {
         data={games}
         keyExtractor={(item) => item.id.toString()}
         renderItem={renderProduct}
-        key={numColumns.toString()} // Thêm key khi thay đổi số cột
+        key={numColumns.toString()}
         numColumns={numColumns}
       />
     </View>
@@ -66,7 +70,7 @@ const styles = StyleSheet.create({
   },
   productImage: {
     width: '100%',
-    height: 200, // Điều chỉnh chiều cao của ảnh
+    height: 200,
     resizeMode: 'cover',
   },
   productTitle: {
@@ -83,4 +87,16 @@ const styles = StyleSheet.create({
     marginTop: 4,
     color: 'green',
   },
+  categoryContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 4,
+  },
+  categoryImage: {
+    width: 20,
+    height: 20,
+    marginRight: 8,
+  },
 });
+
+export default Laptop;

@@ -3,7 +3,7 @@ import React from 'react'
 import Layout from '../components/Layout/Layout'
 import Categories from '../components/category/Categories'
 import Slider from '../components/Slider/Slider'
-import Products from '../components/Products/Products'
+
 import HotDeal from '../components/hotdeal/HotDeal'
 
 
@@ -14,9 +14,10 @@ const Home = () => {
       <Slider/>
       <Text> sản phẩm mới nhất</Text>
      <HotDeal/>
-      <View >
-      <Products/>
-    </View>
+    
+    
+ 
+
     </Layout>
     
   )

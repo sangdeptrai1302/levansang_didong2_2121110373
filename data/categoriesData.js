@@ -7,8 +7,8 @@ export const categoriesData=[
     },
     {
         _id:2,
-        name:'Laptop',
-        path:'Laptop',
+        name:'laptop',
+        path:'laptop',
         icon:'laptop'
     },
     {

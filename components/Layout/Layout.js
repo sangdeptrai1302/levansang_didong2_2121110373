@@ -5,6 +5,7 @@ import Footer from './Footer'
 import { StatusBar } from 'expo-status-bar'
 
 
+
 const Layout = ({children}) => {
   return (
     <>
@@ -12,6 +13,7 @@ const Layout = ({children}) => {
      <Header/>
      <ScrollView>
         {children}
+    
      </ScrollView>
      <View  style ={styles.footer}>
    
