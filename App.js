@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './screens/Home';
 
-import ProductDetails from './components/Products/ProductDetails';
+import ProductDetails from './screens/ProductDetails';
 import Cart from './screens/Cart';
 import Checkout from './screens/Checkout';
 
@@ -23,6 +23,7 @@ import Order from './screens/Order';
 import { NativeBaseProvider } from 'native-base';
 
 import AllProduct from './screens/AllProduct';
+
 
 
 

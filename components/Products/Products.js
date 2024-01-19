@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, FlatList, Image, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {api} from '../../data/api';
-import ProductDetails from './ProductDetails'; // Import ProductDetails
+import ProductDetails from '../../screens/ProductDetails'; // Import ProductDetails
 import ProductsCard from './ProductsCard';
 
 export default function Products() {

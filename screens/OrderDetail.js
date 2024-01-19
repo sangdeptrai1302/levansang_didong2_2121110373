@@ -4,7 +4,7 @@ import { Box, Button, Text } from "native-base";
 import axios from "axios";
 import { api } from "../data/api";
 import { useNavigation } from "@react-navigation/native";
-import BottomSheet from './BottomSheet';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const OrderDetail = ({ route }) => {
@@ -98,8 +98,8 @@ const OrderDetail = ({ route }) => {
         alert(`Payment failed: ${errorData.message}`);
       }
     } catch (error) {
-      console.error("Error during payment:", error.message);
-      alert("Payment failed. Please try again.");
+      console.error("Lỗi trong quá trình thanh toán:", error.message);
+      alert("Thanh toán không thành công. Vui lòng thử lại.");
     }
   };
 

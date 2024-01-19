@@ -15,7 +15,7 @@ const Order = ({ navigation }) => {
         const data = await response.json();
         setOrders(data);
       } catch (error) {
-        console.error('Error fetching orders:', error);
+        console.error('Lỗi tìm nạp đơn hàng:', error);
       }
     };
 
@@ -29,7 +29,7 @@ const Order = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Your Orders</Text>
+      <Text style={styles.heading}>Đơn đặt hàng của bạn</Text>
       <FlatList
         data={orders}
         keyExtractor={(item) => item.orderId.toString()}

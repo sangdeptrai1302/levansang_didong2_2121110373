@@ -73,23 +73,14 @@ const ProfileCard = () => {
       );
 
       if (response.status === 202) {
-        // await AsyncStorage.removeItem("accessToken");
-        // setAccessToken("");
-        // const token = await AsyncStorage.getItem("accessToken");
-        // if (token === null || token === undefined) {
-        //   console.log(" không còn")
-        // } else {
-        //   console.log("còn")
-        // }
-        // alert("Đăng xuất thành công");
+       
         navigation.navigate("home");
         alert("Bạn đã đăng xuất thành công")
       } else {
         // Handle logout failure
         const errorData = await response.json();
         console.error("Logout failed:", errorData);
-        // You can customize the error handling based on your server response
-        // For now, just showing an alert with the error message
+       
         alert(`Đăng xuất thất bại: ${errorData.message}`);
       }
     } catch (error) {
@@ -99,7 +90,7 @@ const ProfileCard = () => {
       } else {
         console.error("Error during logout:", error.message);
         alert("Đã xảy ra lỗi khi đăng xuất ", error.message);
-        console.log("***********************************************" + token);
+        console.log("" + token);
       }
     }
   };
@@ -113,8 +104,7 @@ const ProfileCard = () => {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.avatarContainer}>
-          {/* Avatar */}
-          {/* You can use an appropriate component or image for the avatar */}
+        
           <Image
             source={require("../assets/chuot2.jpg")}
             style={styles.avatar}
