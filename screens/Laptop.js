@@ -1,62 +1,56 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import ProductsCard from '../components/Products/ProductsCard';
+import {api} from '../data/api';
 
-const Laptop = () => {
+export default function Laptop()  {
   const [games, setGames] = useState([]);
   const [numColumns, setNumColumns] = useState(2);
   const navigation = useNavigation();
 
   const getAPI = () => {
-    const apiUrl = 'http://10.17.8.251:8080/api/products';
+    const apiUrl = `http://${api[0].ip}:8080/products/laptop`;
 
     return fetch(apiUrl)
       .then(response => response.json())
-      .then((data) => {
-        // Lọc và chỉ lấy các sản phẩm có category.id === 3
-        const filteredGames = data.filter(item => item.category.id === 6);
-        setGames(filteredGames);
-      })
+      .then((data) => setGames(data))
       .catch(error => console.log(error));
   }
 
   const handleMoreButton = (id) => {
-    navigation.navigate('productDetails', { _id: id });
+    navigation.navigate('productDetails', { _id: productId });
     console.log(id);
   };
 
-  const handleAddToCart = () => {
-    alert('Added to cart');
-  };
+
 
   useEffect(() => {
     getAPI();
   }, []);
 
+  const handleProductPress = (product) => {
+    navigation.navigate('productDetails', { product }); // Navigate to ProductDetails screen
+  };
+
   const renderProduct = ({ item }) => (
-    <View style={styles.productContainer}>
-      <Image source={{ uri: item.photo }} style={styles.productImage} />
-      <Text style={styles.productTitle}>{item.title}</Text>
-      <Text style={styles.productDescription}>{item.description}</Text>
-      <Text style={styles.productPrice}>{`Giá: ${item.price}`}</Text>
-      <View style={styles.categoryContainer}>
-        <Image source={{ uri: item.category.photo }} style={styles.categoryImage} />
-        <Text style={styles.productCategory}>{`Category: ${item.category.name}`}</Text>
-      </View>
-    </View>
+    <TouchableOpacity style={styles.productContainer} onPress={() => handleProductPress(item)}>
+      <ProductsCard product={item}/>
+    </TouchableOpacity>
   );
 
   return (
     <View style={styles.container}>
       <FlatList
         data={games}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.productId.toString()}
         renderItem={renderProduct}
         key={numColumns.toString()}
         numColumns={numColumns}
       />
     </View>
   );
+  
 }
 
 const styles = StyleSheet.create({
@@ -99,4 +93,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Laptop;

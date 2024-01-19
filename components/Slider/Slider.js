@@ -5,12 +5,11 @@ import { SliderBox } from 'react-native-image-slider-box';
 export default function Slider() {
   // Mảng chứa đường dẫn đến các hình ảnh bạn muốn hiển thị trong slider
   const images = [
-   "https://cdn.tgdd.vn/Products/Images/86/195377/Slider/chuot-khong-day-bluetooth-rapoo-t200-den-xam-111020-0243350.jpg",
-   "https://cdn.tgdd.vn/Products/Images/86/73125/Slider/chuot-khong-day-genius-nx-7010-111020-0242500.jpg",
-   "https://maytinhhaidang.net/img/chuot-khong-day-forter-v189.jpg",
-   "https://maytinhhaidang.net/img/chuot-k-day-forter-v189.jpg",
-   "https://maytinhvietphong.vn/media/news/1701_Chutmytnhkhngdymtuusb.png",
-   
+   "https://tainguyen24h.com/wp-content/uploads/2023/12/psd-banner-tet-2024.jpg",
+   "https://cdn.tgdd.vn/News/Thumb/1558869/Untitled-1200x628.jpg",
+   "https://cdn.tgdd.vn//News/0//Salehoitrangram-800x350-1.jpg",
+   "https://cdn.tgdd.vn/Files/2020/01/15/1231595/1urw-ryz_800x450.png",
+"https://thiepmung.com/uploads/worigin/2023/10/14/tao-thong-bao-nghi-tet-2024-dep_69731.jpg"   
     // ...Thêm hình ảnh khác nếu cần
   ];
 

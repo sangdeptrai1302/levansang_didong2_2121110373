@@ -3,6 +3,7 @@ import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import { StatusBar } from 'expo-status-bar'
+import Products from '../Products/Products'
 
 
 
@@ -13,7 +14,7 @@ const Layout = ({children}) => {
      <Header/>
      <ScrollView>
         {children}
-    
+      
      </ScrollView>
      <View  style ={styles.footer}>
    

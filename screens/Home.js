@@ -4,7 +4,9 @@ import Layout from '../components/Layout/Layout'
 import Categories from '../components/category/Categories'
 import Slider from '../components/Slider/Slider'
 
+
 import HotDeal from '../components/hotdeal/HotDeal'
+import Products from '../components/Products/Products'
 
 
 const Home = () => {
@@ -14,6 +16,7 @@ const Home = () => {
       <Slider/>
       <Text> sản phẩm mới nhất</Text>
      <HotDeal/>
+ 
     
     
  

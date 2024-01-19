@@ -1,13 +1,18 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, FlatList, Image, Text } from 'react-native';
+import { View, StyleSheet, FlatList, Image, Text, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {api} from '../../data/api';
+import ProductDetails from './ProductDetails'; // Import ProductDetails
+import ProductsCard from './ProductsCard';
 
 export default function Products() {
   const [games, setGames] = useState([]);
   const [numColumns, setNumColumns] = useState(2); // Thêm state cho số cột
+  const navigation = useNavigation();
 
   const getAPI = () => {
-    const apiUrl = 'http://192.168.137.122:8080/api/products';
+    const apiUrl = `http://${api[0].ip}:8080/products`;
 
     return fetch(apiUrl)
       .then(response => response.json())
@@ -15,17 +20,8 @@ export default function Products() {
       .catch(error => console.log(error));
   }
 
-  const navigation = useNavigation();
-
-  // More details btn
-  const handleMoreButton = (id) => {
-    navigation.navigate('productDetails', { _id: id });
-    console.log(id);
-  };
-
-  // Add to cart
-  const handleAddToCart = () => {
-    alert('Added to cart');
+  const handleProductPress = (product) => {
+    navigation.navigate('productDetails', { product }); // Navigate to ProductDetails screen
   };
 
   useEffect(() => {
@@ -33,26 +29,23 @@ export default function Products() {
   }, []);
 
   const renderProduct = ({ item }) => (
-    
-    <View style={styles.productContainer}>
-      <Image source={{ uri: item.photo }} style={styles.productImage} />
-      <Text style={styles.productTitle}>{item.title}</Text>
-      <Text style={styles.productDescription}>{item.description}</Text>
-      <Text style={styles.productPrice}>{`Giá: ${item.price}`}</Text>
-    </View>
+    <TouchableOpacity style={styles.productContainer} onPress={() => handleProductPress(item)}>
+      <ProductsCard product={item}/>
+    </TouchableOpacity>
   );
 
   return (
     <View style={styles.container}>
       <FlatList
         data={games}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.productId.toString()}
         renderItem={renderProduct}
         key={numColumns.toString()} // Thêm key khi thay đổi số cột
         numColumns={numColumns}
       />
     </View>
   );
+
 }
 
 const styles = StyleSheet.create({

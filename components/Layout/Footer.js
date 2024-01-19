@@ -1,7 +1,7 @@
-import { View, Text, TouchableOpacity ,StyleSheet} from 'react-native'
-import React from 'react'
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import { useRoute,useNavigation  } from '@react-navigation/native';
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import React from "react";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import { useRoute, useNavigation } from "@react-navigation/native";
 const Footer = () => {
   const route = useRoute();
   const navigation = useNavigation();
@@ -36,6 +36,33 @@ const Footer = () => {
           Thông báo
         </Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.menuContainer}
+        onPress={() => navigation.navigate("cart")}
+      >
+        <AntDesign
+          style={[styles.icon, route.name === "cart" && styles.active]}
+          name="shoppingcart"
+        />
+        <Text style={[styles.iconText, route.name === "cart" && styles.active]}>
+          Giỏ Hàng
+        </Text>
+      </TouchableOpacity>
+      {/* <TouchableOpacity
+        style={styles.menuContainer}
+        onPress={() => {
+          navigation.navigate("login");
+        }}
+        accessibilityRole="button"
+      >
+        <AntDesign style={styles.icon} name="login" />
+        <Text
+          style={styles.iconText}
+        >
+          Đăng Nhập
+        </Text>
+      </TouchableOpacity> */}
       <TouchableOpacity
         style={styles.menuContainer}
         onPress={() => navigation.navigate("account")}
@@ -50,27 +77,6 @@ const Footer = () => {
           Tài Khoản
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.menuContainer}
-        onPress={() => navigation.navigate("cart")}
-      >
-        <AntDesign
-          style={[styles.icon, route.name === "cart" && styles.active]}
-          name="shoppingcart"
-        />
-        <Text style={[styles.iconText, route.name === "cart" && styles.active]}>
-          Giỏ Hàng
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.menuContainer}
-        onPress={() => {
-          dispatch(logout());
-        }}
-      >
-        <AntDesign style={styles.icon} name="logout" />
-        <Text style={styles.iconText}>Đăng Xuất</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -80,7 +86,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 15,
-    padding:25
+    padding: 25,
   },
   menuContainer: {
     alignItems: "center",

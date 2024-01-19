@@ -1,50 +1,68 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import ProductsCard from '../components/Products/ProductsCard';
-import {api} from '../data/api';
 
-export default function Mobile()  {
+const tablet = () => {
+  
   const [games, setGames] = useState([]);
   const [numColumns, setNumColumns] = useState(2);
   const navigation = useNavigation();
 
   const getAPI = () => {
-    const apiUrl = `http://${api[0].ip}:8080/products/mobile`;
+    const apiUrl = 'http://192.168.1.13:8080/api/products';
 
     return fetch(apiUrl)
       .then(response => response.json())
-      .then((data) => setGames(data))
+      .then((data) => {
+        // Lọc và chỉ lấy các sản phẩm có category.id === 3
+        const filteredGames = data.filter(item => item.category.id === 3);
+        setGames(filteredGames);
+      })
       .catch(error => console.log(error));
   }
 
+  const handleMoreButton = (product) => {
+    navigation.navigate('ProductDetails', { product });
+  };
+  
+
+  const handleAddToCart = () => {
+    alert('Added to cart');
+  };
 
   useEffect(() => {
     getAPI();
   }, []);
 
-  const handleProductPress = (product) => {
-    navigation.navigate('productDetails', { product }); // Navigate to ProductDetails screen
-  };
-
   const renderProduct = ({ item }) => (
-    <TouchableOpacity style={styles.productContainer} onPress={() => handleProductPress(item)}>
-      <ProductsCard product={item}/>
+    <TouchableOpacity  style={styles.productContainer}
+    onPress={() => handleMoreButton(item)}>
+      <View style={styles.productContainer}>
+      <Image source={{ uri: item.photo }} style={styles.productImage} />
+      <Text style={styles.productTitle}>{item.title}</Text>
+      <Text style={styles.productDescription}>{item.description}</Text>
+      <Text style={styles.productPrice}>{`Giá: ${item.price}`}</Text>
+      <View style={styles.categoryContainer}>
+        <Image source={{ uri: item.category.photo }} style={styles.categoryImage} />
+        <Text style={styles.productCategory}>{`Category: ${item.category.name}`}</Text>
+      </View>
+    </View>
     </TouchableOpacity>
   );
 
   return (
+    
     <View style={styles.container}>
+     
       <FlatList
         data={games}
-        keyExtractor={(item) => item.productId.toString()}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={renderProduct}
         key={numColumns.toString()}
         numColumns={numColumns}
       />
     </View>
   );
-  
 }
 
 const styles = StyleSheet.create({
@@ -58,7 +76,7 @@ const styles = StyleSheet.create({
   },
   productImage: {
     width: '100%',
-    height: 200,
+    height: 100,
     resizeMode: 'cover',
   },
   productTitle: {
@@ -87,3 +105,4 @@ const styles = StyleSheet.create({
   },
 });
 
+export default tablet;
