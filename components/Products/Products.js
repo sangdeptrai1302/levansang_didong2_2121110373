@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
   productContainer: {
     flex: 1,
-    margin: 8,
+    margin: 2,
   },
   productImage: {
     width: '100%',

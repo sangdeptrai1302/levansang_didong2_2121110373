@@ -19,9 +19,9 @@ export const categoriesData=[
     },
     {
         _id:4,
-        name:'Headfones',
-        path:'Headfones',
-        icon:'headphones'
+        name:'AllProducts',
+        path:'AllProducts',
+        icon:'briefcase'
     },
     {
         _id:5,

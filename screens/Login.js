@@ -1,6 +1,6 @@
 // Login.js
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Thêm dòng này
 import {api} from '../data/api';
@@ -28,7 +28,7 @@ const Login = () => {
         // Lưu token vào AsyncStorage
         const responseData = await response.json();
         await AsyncStorage.setItem('accessToken', responseData.token);
-        console.log("*************************************************************************************************** :"+responseData.token)
+        console.log("*"+responseData.token)
         console.log(`http://${api[0].ip}:8080/login/customer`);
         alert('Đăng nhập thành công!');
         navigation.navigate('home');
@@ -51,42 +51,52 @@ const Login = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.logo}>Ahihi...</Text>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.inputText}
-          placeholder="số điện thoại..."
-          placeholderTextColor="black"
-          onChangeText={text => setMobileId(text)}
-        />
+    <ImageBackground
+      source={require('../assets/nen4.jpg')}
+      style={styles.background}
+    >
+      <View style={styles.container}>
+        <Text style={styles.logo}>Đăng nhập</Text>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Số điện thoại..."
+            placeholderTextColor="black"
+            onChangeText={text => setMobileId(text)}
+          />
+        </View>
+        <View style={styles.inputView}>
+          <TextInput
+            secureTextEntry
+            style={styles.inputText}
+            placeholder="Mật khẩu..."
+            placeholderTextColor="black"
+            onChangeText={text => setPassword(text)}
+          />
+        </View>
+        <TouchableOpacity onPress={handleForgotPassword}>
+          <Text style={styles.forgot}>Quên Mật khẩu?</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.loginBtn} onPress={handleLogin}>
+          <Text style={styles.loginText}>ĐĂNG NHẬP</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleRegister}>
+          <Text style={styles.loginText}>Đăng ký</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.inputView}>
-        <TextInput
-          secureTextEntry
-          style={styles.inputText}
-          placeholder="Mật khẩu..."
-          placeholderTextColor="black"
-          onChangeText={text => setPassword(text)}
-        />
-      </View>
-      <TouchableOpacity onPress={handleForgotPassword}>
-        <Text style={styles.forgot}>Quên Mật khẩu?</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.loginBtn} onPress={handleLogin}>
-        <Text style={styles.loginText}>ĐĂNG NHẬP</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleRegister}>
-        <Text style={styles.loginText}>Đăng ký</Text>
-      </TouchableOpacity>
-    </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+  },
   container: {
     flex: 1,
-    backgroundColor: '#f08080',
+    backgroundColor: 'transparent', // Đặt màu nền thành trong suốt để hình ảnh background hiển thị đúng
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -110,12 +120,12 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   forgot: {
-    color: 'white',
+    color: 'black',
     fontSize: 11,
   },
   loginBtn: {
-    width: '80%',
-    backgroundColor: '#fb5b5a',
+    width: '60%',
+    backgroundColor: 'green',
     borderRadius: 25,
     height: 50,
     alignItems: 'center',
@@ -124,7 +134,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   loginText: {
-    color: 'white',
+    color: 'black',
+    fontWeight: 'bold',
   },
 });
 

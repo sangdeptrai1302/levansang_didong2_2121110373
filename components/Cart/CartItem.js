@@ -14,7 +14,7 @@ const CartItem = ({ item }) => {
   };
   return (
     <View style={styles.container}>
-      <Image source={{ uri: item?.imageUrl }} style={styles.image} />
+    <Image source={{ uri: item?.manufacturer }} style={styles.image} />
       <View>
         <Text style={styles.name}> {item?.name}</Text>
         <Text style={styles.name}> Price : {item?.price} $</Text>

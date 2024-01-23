@@ -1,9 +1,10 @@
-import { View ,StyleSheet, ScrollView} from 'react-native'
+import { View ,StyleSheet, ScrollView, Image} from 'react-native'
 import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import { StatusBar } from 'expo-status-bar'
 import Products from '../Products/Products'
+import Headfones from '../../screens/Headfones'
 
 
 
@@ -11,10 +12,12 @@ const Layout = ({children}) => {
   return (
     <>
     <StatusBar/>
+    <Image source={require('../../assets/logo.jpg')} style={styles.image} />
      <Header/>
      <ScrollView>
         {children}
-      
+      {/* <Headfones/> */}
+      <Products/>
      </ScrollView>
      <View  style ={styles.footer}>
    
@@ -39,5 +42,8 @@ const styles = StyleSheet.create({
     marginBottom:20
     
   },
+  image:{
+    marginLeft:50,
+  }
 })
 export default Layout

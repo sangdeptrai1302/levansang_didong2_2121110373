@@ -54,7 +54,7 @@ export default function App() {
           <Stack.Screen name="mobile" component={Mobile}/>
           <Stack.Screen name="laptop" component={Laptop}/>
           <Stack.Screen name="Desktop" component={Desktop}/>
-          <Stack.Screen name="Headfones" component={Headfones}/>
+          <Stack.Screen name="AllProducts" component={Headfones}/>
           <Stack.Screen name="Tablet" component={tablet}/>
           <Stack.Screen name="Accessories" component={AllProduct}/>
         

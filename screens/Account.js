@@ -106,7 +106,7 @@ const ProfileCard = () => {
         <View style={styles.avatarContainer}>
         
           <Image
-            source={require("../assets/chuot2.jpg")}
+            source={require("../assets/sang1.jpg")}
             style={styles.avatar}
           />
           <TouchableOpacity style={styles.buttonlogin} onPress={handleLoginPress} >

@@ -18,12 +18,6 @@ export default function Laptop()  {
       .catch(error => console.log(error));
   }
 
-  const handleMoreButton = (id) => {
-    navigation.navigate('productDetails', { _id: productId });
-    console.log(id);
-  };
-
-
 
   useEffect(() => {
     getAPI();
@@ -60,7 +54,7 @@ const styles = StyleSheet.create({
   },
   productContainer: {
     flex: 1,
-    margin: 8,
+
   },
   productImage: {
     width: '100%',
@@ -89,7 +83,7 @@ const styles = StyleSheet.create({
   categoryImage: {
     width: 20,
     height: 20,
-    marginRight: 8,
+    marginRight: 4,
   },
 });
 

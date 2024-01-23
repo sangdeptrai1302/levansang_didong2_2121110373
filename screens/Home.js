@@ -6,7 +6,8 @@ import Slider from '../components/Slider/Slider'
 
 
 import HotDeal from '../components/hotdeal/HotDeal'
-import Products from '../components/Products/Products'
+
+
 
 
 const Home = () => {
@@ -17,10 +18,10 @@ const Home = () => {
       <Text> sản phẩm mới nhất</Text>
      <HotDeal/>
  
-    
+      
     
  
-
+    
     </Layout>
     
   )
